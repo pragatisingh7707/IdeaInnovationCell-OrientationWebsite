@@ -1,0 +1,5 @@
+@import "tailwindcss";
+
+:root { font-synthesis: none; text-rendering: optimizeLegibility; -webkit-font-smoothing: antialiased; }
+html { background: #0b0e0c; }
+body { margin: 0; min-width: 320px; }
