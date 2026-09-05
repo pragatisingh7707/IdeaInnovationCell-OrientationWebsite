@@ -8,7 +8,7 @@ const fields = [
   { name: 'email', label: 'EMAIL ID', placeholder: 'YOUR.NAME@COLLEGE.EDU', icon: Mail, type: 'email' },
 ]
 
-function LoginForm({ onGenerate }) {
+function LoginForm({ onGenerate, orientationTitle }) {
   const [form, setForm] = useState({ fullName: '', branch: '', registrationId: '', email: '' })
   const [error, setError] = useState('')
 
@@ -24,7 +24,10 @@ function LoginForm({ onGenerate }) {
 
   return (
     <form className="form-card" onSubmit={handleSubmit}>
-      <div className="form-card-top"><span>IDENTITY VERIFICATION</span><span className="form-code">IIC / 026 <b className="live-status"><i /> LIVE</b></span></div>
+      <div className="panel-corner panel-corner-tl" /><div className="panel-corner panel-corner-tr" /><div className="panel-corner panel-corner-bl" /><div className="panel-corner panel-corner-br" />
+      <div className="panel-emblem" aria-hidden="true"><span /></div>
+      <div className="form-card-top"><span>IIC × {orientationTitle}</span><span className="form-code">VERIFIED ENTRY</span></div>
+      <div className="form-card-label"><span>IDENTITY VERIFICATION</span><span>IIC / 026 <b className="live-status"><i /> LIVE</b></span></div>
       <div className="form-fields">
         {fields.map(({ name, label, placeholder, icon: Icon, type }) => (
           <label className="input-group" key={name}>

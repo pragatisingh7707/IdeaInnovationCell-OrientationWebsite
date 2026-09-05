@@ -42,11 +42,13 @@ function TicketCard({ details, orientationTitle }) {
 
   return (
     <div className="ticket-area">
-      <div className="ticket-card" ref={ticketRef}>
-        <div className="ticket-left">
-          <div className="ticket-kicker"><span className="chevrons">»</span> IIC / VERIFIED ENTRY</div>
+      <div className="ticket-card frame-panel" ref={ticketRef}>
+        <div className="panel-corner panel-corner-tl" /><div className="panel-corner panel-corner-tr" /><div className="panel-corner panel-corner-bl" /><div className="panel-corner panel-corner-br" />
+        <div className="ticket-content">
+          <div className="ticket-card-top"><span>IIC × {orientationTitle}</span><span>VERIFIED ENTRY</span></div>
+          <div className="ticket-kicker">IIC / VERIFIED ENTRY</div>
           <h1>{orientationTitle}</h1>
-          <div className="ticket-subtitle"><span className="rank-hex">◆</span> ORIENTATION PASS</div>
+          <div className="ticket-subtitle">ORIENTATION PASS</div>
           <p className="ticket-tagline">ADMIT ONE FUTURE INNOVATOR</p>
           <div className="detail-list">
             {Object.entries(details).map(([key, value]) => {
@@ -54,10 +56,10 @@ function TicketCard({ details, orientationTitle }) {
               return <div className="ticket-detail" key={key}><Icon size={16} /><span><small>{labels[key]}</small><strong>{value}</strong></span></div>
             })}
           </div>
-          <div className="ticket-footer">PREPARE. INNOVATE. IMPACT.</div>
         </div>
         <div className="ticket-right">
           <div className="pass-placeholder">
+            <div className="panel-emblem" aria-hidden="true"><span /></div>
             <svg className="authorization-emblem" viewBox="0 0 120 140" role="img" aria-label="Geometric authorization emblem">
               <defs><linearGradient id="emblem-metal" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stopColor="#f4ffe8" /><stop offset=".45" stopColor="#a9d788" /><stop offset="1" stopColor="#5cff48" /></linearGradient></defs>
               <path d="M60 5 108 22v42c0 31-20 54-48 68C32 118 12 95 12 64V22L60 5Z" fill="none" stroke="url(#emblem-metal)" strokeWidth="3" />
@@ -75,6 +77,7 @@ function TicketCard({ details, orientationTitle }) {
           </div>
           <div className="serial">NO. {ticketNumber}</div>
         </div>
+        <div className="ticket-footer">PREPARE · INNOVATE · IMPACT <span>PASS / 026</span></div>
       </div>
       <div className="verification-row"><div className="verified-badge"><Check size={16} /> VERIFIED PASS</div><p>You are all set! Get ready for {orientationTitle}.<br className="desktop-break" /> See you at the orientation.</p></div>
       <div className="ticket-actions"><button type="button" onClick={downloadPass}><Download size={16} /> DOWNLOAD PASS</button><button type="button" onClick={sharePass}><Share2 size={16} /> SHARE PASS</button></div>
