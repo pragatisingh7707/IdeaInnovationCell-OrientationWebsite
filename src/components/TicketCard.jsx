@@ -181,7 +181,7 @@ function TicketCard({ details, orientationTitle }) {
 
         {/* Watermark / Micro Footer Line */}
         <div className="ticket-bottom-strip">
-          <span>PREPARE · INNOVATE · IMPACT</span>
+          <span>MAKE · BREAK · CREATE</span>
           <span>PASS / 2026</span>
         </div>
       </div>

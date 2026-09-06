@@ -52,7 +52,7 @@ function App() {
         </section>
       )}
 
-      <footer className="site-footer"><span /> PREPARE · INNOVATE · IMPACT <span /><b>+</b></footer>
+      <footer className="site-footer"><span /> MAKE · BREAK · CREATE <span /><b>+</b></footer>
     </main>
   )
 }
