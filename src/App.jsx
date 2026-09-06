@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { ArrowLeft } from 'lucide-react'
 import CountdownTimer from './components/CountdownTimer'
 import LoginForm from './components/LoginForm'
@@ -8,9 +8,45 @@ import './App.css'
 export const orientationTitle = 'ORIENTATION 2026'
 export const targetDate = '2026-09-10T17:00:00'
 
+const backgroundParticles = Array.from({ length: 32 }, (_, index) => ({
+  '--particle-left': `${(index * 47) % 97}%`,
+  '--particle-top': `${(index * 29) % 97}%`,
+  '--particle-size': `${1.5 + (index % 3) * 0.75}px`,
+  '--particle-delay': `${-((index * 1.7) % 18)}s`,
+  '--particle-duration': `${16 + (index % 7)}s`,
+  '--particle-drift-x': `${18 + (index % 5) * 12}px`,
+  '--particle-drift-y': `${-12 - (index % 4) * 9}px`,
+}))
+
 function App() {
   const [details, setDetails] = useState({ fullName: '', branch: '', registrationId: '', email: '' })
   const [hasGenerated, setHasGenerated] = useState(false)
+
+  useEffect(() => {
+    const desktopQuery = window.matchMedia('(min-width: 769px) and (pointer: fine)')
+    const reducedMotionQuery = window.matchMedia('(prefers-reduced-motion: reduce)')
+    if (!desktopQuery.matches || reducedMotionQuery.matches) return undefined
+
+    let frameId = 0
+    const handlePointerMove = (event) => {
+      if (frameId) return
+      frameId = window.requestAnimationFrame(() => {
+        const x = ((event.clientX / window.innerWidth) - 0.5) * 10
+        const y = ((event.clientY / window.innerHeight) - 0.5) * 8
+        document.documentElement.style.setProperty('--parallax-x', `${x.toFixed(2)}px`)
+        document.documentElement.style.setProperty('--parallax-y', `${y.toFixed(2)}px`)
+        frameId = 0
+      })
+    }
+
+    window.addEventListener('pointermove', handlePointerMove, { passive: true })
+    return () => {
+      window.removeEventListener('pointermove', handlePointerMove)
+      if (frameId) window.cancelAnimationFrame(frameId)
+      document.documentElement.style.removeProperty('--parallax-x')
+      document.documentElement.style.removeProperty('--parallax-y')
+    }
+  }, [])
 
   const handleGenerate = (formDetails) => {
     setDetails(formDetails)
@@ -19,8 +55,25 @@ function App() {
 
   return (
     <main className="app-shell">
-      <div className="orbit-field" aria-hidden="true"><i /><i /><i /><i /><b /><b /><b /></div>
-      <div className="celestial-orb" aria-hidden="true"><span /></div>
+      <div className="animated-background" aria-hidden="true">
+        <div className="background-stars">
+          {backgroundParticles.map((particle, index) => <i className="background-particle" key={index} style={particle} />)}
+        </div>
+        <div className="background-fog" />
+        <div className="background-aurora" />
+        <div className="background-planet"><span /></div>
+        <div className="background-grid" />
+        <div className="background-radar" />
+        <div className="background-meteors">
+          <i className="background-meteor" />
+          <i className="background-meteor" />
+          <i className="background-meteor" />
+        </div>
+        <div className="background-energy" />
+        <div className="background-scan" />
+        <div className="background-grain" />
+        <div className="background-vignette" />
+      </div>
       <header className="site-header">
         <div className="brand-lockup">
           <strong>IIC</strong>
