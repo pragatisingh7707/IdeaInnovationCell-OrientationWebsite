@@ -3,7 +3,7 @@ import { Building2, IdCard, Mail, Sparkles, UserRound } from 'lucide-react'
 
 const fields = [
   { name: 'fullName', label: 'FULL NAME', placeholder: 'ENTER YOUR FULL NAME', icon: UserRound, type: 'text' },
-  { name: 'branch', label: 'BRANCH / DEPARTMENT', placeholder: 'E.G. COMPUTER SCIENCE', icon: Building2, type: 'text' },
+  { name: 'branch', label: 'BRANCH / DEPARTMENT', placeholder: 'ENTER YOUR BRANCH', icon: Building2, type: 'text' },
   { name: 'registrationId', label: 'REGISTRATION ID', placeholder: 'ENTER YOUR ID NUMBER', icon: IdCard, type: 'text' },
   { name: 'email', label: 'EMAIL ID', placeholder: 'YOUR.NAME@COLLEGE.EDU', icon: Mail, type: 'email' },
 ]
@@ -24,7 +24,6 @@ function LoginForm({ onGenerate, orientationTitle }) {
 
   return (
     <form className="form-card" onSubmit={handleSubmit}>
-      <div className="panel-corner panel-corner-tl" /><div className="panel-corner panel-corner-tr" /><div className="panel-corner panel-corner-bl" /><div className="panel-corner panel-corner-br" />
       <div className="panel-emblem" aria-hidden="true"><span /></div>
       <div className="form-card-top"><span>IIC × {orientationTitle}</span><span className="form-code">VERIFIED ENTRY</span></div>
       <div className="form-card-label"><span>IDENTITY VERIFICATION</span><span>IIC / 026 <b className="live-status"><i /> LIVE</b></span></div>

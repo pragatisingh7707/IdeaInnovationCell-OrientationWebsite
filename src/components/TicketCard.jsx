@@ -68,11 +68,6 @@ function TicketCard({ details, orientationTitle }) {
   return (
     <div className="ticket-area">
       <div className="ticket-card frame-panel landscape-ticket" ref={ticketRef}>
-        <div className="panel-corner panel-corner-tl" />
-        <div className="panel-corner panel-corner-tr" />
-        <div className="panel-corner panel-corner-bl" />
-        <div className="panel-corner panel-corner-br" />
-
         {/* Left: Main Ticket Section */}
         <div className="ticket-main">
           <div className="ticket-header-strip">
