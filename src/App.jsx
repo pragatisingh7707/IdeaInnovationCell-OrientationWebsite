@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
 import { ArrowLeft } from 'lucide-react'
 import CountdownTimer from './components/CountdownTimer'
 import LoginForm from './components/LoginForm'
@@ -8,7 +8,7 @@ import './App.css'
 export const orientationTitle = 'ORIENTATION 2026'
 export const targetDate = '2026-09-10T17:00:00'
 
-const backgroundParticles = Array.from({ length: 32 }, (_, index) => ({
+const backgroundParticles = Array.from({ length: 10 }, (_, index) => ({
   '--particle-left': `${(index * 47) % 97}%`,
   '--particle-top': `${(index * 29) % 97}%`,
   '--particle-size': `${1.5 + (index % 3) * 0.75}px`,
@@ -22,32 +22,6 @@ function App() {
   const [details, setDetails] = useState({ fullName: '', branch: '', registrationId: '', email: '' })
   const [hasGenerated, setHasGenerated] = useState(false)
 
-  useEffect(() => {
-    const desktopQuery = window.matchMedia('(min-width: 769px) and (pointer: fine)')
-    const reducedMotionQuery = window.matchMedia('(prefers-reduced-motion: reduce)')
-    if (!desktopQuery.matches || reducedMotionQuery.matches) return undefined
-
-    let frameId = 0
-    const handlePointerMove = (event) => {
-      if (frameId) return
-      frameId = window.requestAnimationFrame(() => {
-        const x = ((event.clientX / window.innerWidth) - 0.5) * 10
-        const y = ((event.clientY / window.innerHeight) - 0.5) * 8
-        document.documentElement.style.setProperty('--parallax-x', `${x.toFixed(2)}px`)
-        document.documentElement.style.setProperty('--parallax-y', `${y.toFixed(2)}px`)
-        frameId = 0
-      })
-    }
-
-    window.addEventListener('pointermove', handlePointerMove, { passive: true })
-    return () => {
-      window.removeEventListener('pointermove', handlePointerMove)
-      if (frameId) window.cancelAnimationFrame(frameId)
-      document.documentElement.style.removeProperty('--parallax-x')
-      document.documentElement.style.removeProperty('--parallax-y')
-    }
-  }, [])
-
   const handleGenerate = (formDetails) => {
     setDetails(formDetails)
     setHasGenerated(true)
@@ -60,19 +34,20 @@ function App() {
           {backgroundParticles.map((particle, index) => <i className="background-particle" key={index} style={particle} />)}
         </div>
         <div className="background-fog" />
-        <div className="background-aurora" />
-        <div className="background-planet"><span /></div>
-        <div className="background-grid" />
-        <div className="background-radar" />
-        <div className="background-meteors">
-          <i className="background-meteor" />
-          <i className="background-meteor" />
-          <i className="background-meteor" />
-        </div>
-        <div className="background-energy" />
-        <div className="background-scan" />
-        <div className="background-grain" />
+        <div className="background-tech-grid" />
+        <div className="background-constellations" />
+        <div className="background-planet"><span /><i className="planet-ring planet-ring-one" /><i className="planet-ring planet-ring-two" /></div>
+        <div className="background-hud-ring" />
+        <div className="background-core"><span /></div>
+        <div className="background-energy-lines"><i /><i /></div>
+        <div className="background-meteors"><i /></div>
+        <div className="background-frame-lines" />
+        <div className="background-corner-brackets" />
+        <div className="background-status background-status-left">SYS // 07A <span>ONLINE</span></div>
+        <div className="background-status background-status-right">SECTOR 03 <span>STABLE</span></div>
+        <div className="background-data-marks"><i /><i /><i /><i /></div>
         <div className="background-vignette" />
+        <div className="background-noise" />
       </div>
       <header className="site-header">
         <div className="brand-lockup">
