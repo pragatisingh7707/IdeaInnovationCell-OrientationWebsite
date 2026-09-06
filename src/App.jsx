@@ -5,8 +5,8 @@ import LoginForm from './components/LoginForm'
 import TicketCard from './components/TicketCard'
 import './App.css'
 
-export const orientationTitle = 'ORIENTATION NAME'
-export const targetDate = '2026-10-31T09:00:00'
+export const orientationTitle = 'ORIENTATION 2026'
+export const targetDate = '2026-09-10T17:00:00'
 
 function App() {
   const [details, setDetails] = useState({ fullName: '', branch: '', registrationId: '', email: '' })
